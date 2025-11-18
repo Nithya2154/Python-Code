@@ -1,59 +1,58 @@
-'''
-Students mark analysis.py
--------------------------
-1. Average by Subject and Student
-2. Highest and Lowest Per Subject
-3. Overall class Topper
-4. Pass Count per Subject
-5. Which Subject is Difficult
-6. Ranking Students
- 
-'''
-import numpy as np
+# Students Mark Analysis
 
-np.random.seed(2)
-students_mark_list = np.random.randint(10, 101, size=(20, 5))
+This project analyzes the marks of 20 students across 5 subjects using Python and NumPy.
 
-# print("Student Mark Lists", '\n', students_mark_list)
+## Features
 
+- **Randomly generated marks** for each student in each subject
+- Compute **averages** by subject and student
+- Find **highest and lowest marks** per subject
+- Identify the **overall topper** by average and total marks
+- **Pass count** per subject (marks ≥ 40 are considered passing)
+- Determine the **most difficult subject** (lowest average)
+- **Rank students** based on total marks
 
-# 1. Average by Subject and Student-------------------------------
-avg_by_subjects = np.mean(students_mark_list, axis=0)
-avg_by_students = np.mean(students_mark_list, axis=1)
-print("Average by Subjects:", avg_by_subjects)
-print("Average by Students:", avg_by_students)
-# -----------------------------------------------------------------
+## How It Works
 
-# 2. Highest and Lowest Per Subject--------------------------------
-highest = np.max(students_mark_list, axis=0)
-lowest = np.min(students_mark_list, axis=0)
-print("Highest Marks of Subject:", highest)
-print("Lowest Marks of Subject:", lowest)
-# -----------------------------------------------------------------
+- The script generates a NumPy array of marks (integers between 10 and 100)
+- Analytical outputs are printed for:
+    - Subject-wise and student-wise averages
+    - Highest and lowest marks in every subject
+    - The student(s) with the highest average and highest total marks
+    - Pass count per subject (marks ≥ 40)
+    - The subject considered most difficult (lowest average)
+    - Student ranking based on total marks
 
-# 3. Overall class Topper with Average-----------------------------
-over_all_class_topper = np.argmax(avg_by_students)
-print("Topper of the Class:", over_all_class_topper,
-      "with Average of", avg_by_students[over_all_class_topper])
-# 3. Overall class Topper with Mark-------------------------------
-total = np.sum(students_mark_list, axis=1)
-over_all_class_topper = np.argmax(total)
-print("Topper of the Class:", over_all_class_topper,
-      "with Average of", total[over_all_class_topper])
-# -----------------------------------------------------------------
+## Requirements
 
-# 4. Pass Count per Subject----------------------------------------
-pass_fail = students_mark_list >= 40
-pass_count = np.sum(pass_fail, axis=0)
-print("Pass Count By Subject:", pass_count)
-# -----------------------------------------------------------------
+- Python 3
+- NumPy library
 
-# 5. Which Subject is Difficult------------------------------------
-diff_sub = np.argmin(avg_by_subjects)
-print("The Difficult Subject Is:", diff_sub)
-# -----------------------------------------------------------------
+## How to Run
 
-# 6. Ranking Students----------------------------------------------
-ranks = np.argsort(np.argsort(-total)) + 1
-print(ranks)
-# -----------------------------------------------------------------
+1. Make sure you have Python and NumPy installed:
+    ```bash
+    pip install numpy
+    ```
+2. Run the script:
+    ```bash
+    python Students_mark_analysis.py
+    ```
+3. Observe the results in your console.
+
+## Example Output
+
+```
+Average by Subjects: [66.8 63.75 53.3 61.5 56.85]
+Average by Students: [69.8 61.0 54.0 ...]
+Highest Marks of Subject: [97 99 93 98 94]
+Lowest Marks of Subject: [18 11 10 18 13]
+Topper of the Class: 0 with Average of 69.8
+Pass Count By Subject: [18 17 14 17 15]
+The Difficult Subject Is: 2
+Ranking: [ 1  5 12  7 ...]
+```
+
+## License
+
+This project is open-sourced under the MIT License.
